@@ -3,6 +3,6 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build target/NutriMom-0.0.1-SNAPSHOT.jar NutriMom.jar
+COPY --from=build target/NutriMom-0.0.1-SNAPSHOT.jar nutrimom.jar
 EXPOSE 8083
 ENTRYPOINT ["java","-jar","nutrimom.jar"]
