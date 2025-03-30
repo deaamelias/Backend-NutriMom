@@ -4,12 +4,13 @@ import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 
-import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.*;
 
 public class OWLUtil {
 
-    private static final String OWL_FILE = "src/main/resources/foodontology.owl";
+    private static final String OWL_FILE = "foodontology.owl";
     private static final String BASE_IRI = "http://www.semanticweb.org/dell/ontologies/2025/1/food#";
 
     private static Model model;
@@ -17,7 +18,11 @@ public class OWLUtil {
     static {
         try {
             model = ModelFactory.createDefaultModel();
-            model.read(new FileInputStream(OWL_FILE), null);
+            InputStream inputStream = OWLUtil.class.getClassLoader().getResourceAsStream(OWL_FILE);
+            if (inputStream == null) {
+                throw new FileNotFoundException("❌ File OWL tidak ditemukan di classpath!");
+            }
+            model.read(inputStream, null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -32,7 +37,6 @@ public class OWLUtil {
 
         String alergiCondition = alergi.isEmpty() ? "" : formatAlergi(alergi);
 
-        // Tambahkan pengambilan data protein, karbohidrat, dan lemak
         String query = String.format(
                 "PREFIX food: <%s> " +
                         "SELECT ?name ?calorie ?protein ?carb ?fat " +
@@ -83,4 +87,3 @@ public class OWLUtil {
         return sb.toString();
     }
 }
-
