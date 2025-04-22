@@ -11,7 +11,7 @@ import java.util.*;
 
 public class OWLUtil {
 
-    private static final String OWL_FILE = "src/main/resources/foodrecommender.owl";
+    private static final String OWL_FILE = "foodrecommender.owl";
     private static final String BASE_IRI = "http://www.semanticweb.org/apple/ontologies/2025/1/food#";
 
     private static Model model;
