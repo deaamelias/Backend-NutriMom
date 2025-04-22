@@ -10,7 +10,6 @@ public class FoodInput {
     private int usiaKehamilan;
     private String levelAktivitas;
     private String kategoriStres;
-    private String diabetesGestasional;
     private List<String> alergi;
 
     // Constructor (opsional)
@@ -65,15 +64,6 @@ public class FoodInput {
     public void setKategoriStres(String kategoriStres) {
         this.kategoriStres = kategoriStres;
     }
-
-    public String getDiabetesGestasional() {
-        return diabetesGestasional;
-    }
-
-    public void setDiabetesGestasional(String diabetesGestasional) {
-        this.diabetesGestasional = diabetesGestasional;
-    }
-
     public List<String> getAlergi() {
         return alergi;
     }
