@@ -17,7 +17,11 @@ public class OWLUtil {
     static {
         try {
             model = ModelFactory.createDefaultModel();
-            model.read(new FileInputStream(OWL_FILE), null);
+            InputStream inputStream = OWLUtil.class.getClassLoader().getResourceAsStream(OWL_FILE);
+            if (inputStream == null) {
+                throw new FileNotFoundException("❌ File OWL tidak ditemukan di classpath!");
+            }
+            model.read(inputStream, null);
         } catch (Exception e) {
             e.printStackTrace();
         }
